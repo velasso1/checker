@@ -1,0 +1,22 @@
+version: "3"
+
+services:
+  client:
+    container_name: client
+    build:
+      context: .
+      dockerfile: Dockerfile.client
+    restart: unless-stopped
+    depends_on:
+      - server
+    ports:
+      - "3000:3000"
+
+  server:
+    container_name: server
+    build:
+      context: .
+      dockerfile: Dockerfile.server
+    restart: unless-stopped
+    ports:
+      - "8080:8080"
