@@ -1,0 +1,25 @@
+{
+    "textField": [
+        {"name": "lastName", "value": "lastName"},
+        {"name": "firstName", "value": "firstName"},
+        {"name": "secondName", "value": "secondName"}
+    ],
+
+    "numberField": [
+        {"name": "resPhil", "value": "resPhil"},
+        {"name": "resCrim", "value": "resCrim"},
+        {"name": "resCivil", "value": "resCivil"}
+    ],
+
+    "labelInfo": [
+        {"htmlFor": "lastName", "className": "modal__label", "text": "Фамилия"},
+        {"htmlFor": "firstName", "className": "modal__label", "text": "Имя"},
+        {"htmlFor": "secondName", "className": "modal__label", "text": "Отчество"}
+    ],
+
+    "labelResults": [
+        {"htmlFor": "resPhil", "className": "modal__label", "text": "Философия"},
+        {"htmlFor": "resCrim", "className": "modal__label", "text": "Уголовное право"},
+        {"htmlFor": "resCivil", "className": "modal__label", "text": "Гражданское право"}
+    ]
+}

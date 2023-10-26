@@ -1,0 +1,48 @@
+.header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 25px 150px;
+    background-color: #3C75AC;
+    
+    &__logo {
+        width: 120px;
+    }
+
+    &__title {
+        text-transform: uppercase;
+        color: #fff; 
+        font-size: 20px;
+        text-decoration: none;
+    }
+ 
+    &__exit,
+    &__office, 
+    &__login {
+        padding: 0;
+        background-color: inherit;
+        border: none;
+        font-family: 'Open Sans', sans-serif;
+        text-transform: uppercase;
+        color: #ffffff;
+        font-size: 15px;
+        text-decoration: none;
+        background-image: linear-gradient(currentColor, currentColor);
+        background-position: 0% 100%;
+        background-repeat: no-repeat;
+        background-size: 0% 2px;
+        transition: background-size .3s;
+        padding-bottom: 2px; 
+    } 
+
+    &__office {
+        margin-right: 10px;
+    }
+
+    &__exit:hover,
+    &__office:hover,
+    &__login:hover {
+        background-size: 100% 2px;
+        cursor: pointer;
+    }
+  }

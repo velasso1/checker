@@ -1,0 +1,106 @@
+.modal {
+    position: fixed;
+    background-color: rgba(0,0,0,0.6);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100vw;
+    height: 100vh;
+    top: 0;
+    left: 0;
+
+    &__error-message {
+        padding-top: 15px;
+        color: #a61717;
+    }
+
+    &__content {
+        display: flex;
+        justify-content: space-between;
+        flex-direction: column;
+        align-items: center;
+        padding: 20px;
+        border-radius: 10px;
+        background-color: rgb(231, 231, 231);
+    }
+    
+    &__perosnal-info,
+    &__results {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: row;
+        border-top: 1px solid #bbb;
+        padding-top: 15px;
+    }
+
+    &__info-labels,
+    &__info-inputs,
+    &__results-labels,
+    &__results-inputs {
+        display: flex;
+        justify-content: space-between;
+        flex-direction: column;
+    }
+
+    &__info-labels,
+    &__results-labels {
+        margin-right: 20px;
+        margin-top: 14px;
+        display: flex;
+        justify-content: space-between;
+    }
+
+    &__info-labels > label,
+    &__results-labels > label {
+        display: flex;
+        text-align: center;
+        margin-bottom: 32px;
+        align-items: center;
+    }
+
+    &__info-inputs > input,
+    &__results-inputs > input {
+        margin-bottom: 15px;
+        border: 2px solid #bbbbbb;
+        border-radius: 5px;
+        border-color: #bbbbbb;
+        height: 30px;
+        padding: 0 0 0 10px;
+        width: 350px;
+    }
+
+    &__title {
+        font-size: 18px;
+    }
+
+    &__tagline {
+        padding-top: 15px;
+        font-weight: 300;
+        font-size: 15px;
+    }
+
+    &__close-button {
+        top: 0;
+        left: 50px;
+    }
+
+    &___buttons {
+        display: flex;
+        width: auto;
+        padding-top: 10px;
+    }
+
+    &__cancel {
+        width: 120px;
+    }
+
+    &__save {
+        width: 120px;
+        margin-left: 50px;
+    }
+
+    .result-input {
+        width: 280px;
+    } 
+}

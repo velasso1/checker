@@ -1,0 +1,44 @@
+import React from "react";
+import BackForm from "./backForm";
+import DataChecker from "../hoc/dataChecker";
+
+function Table({ userData }) {
+	const user = userData[0];
+
+	return (
+		<>
+			<div className="results">
+				<table className="results__table">
+					<tbody>
+						<tr>
+							<td rowSpan="2">ФИО</td>
+							<td colSpan="3">ЭКЗАМЕНЫ</td>
+							<td rowSpan="2">СУММА БАЛЛОВ</td>
+						</tr>
+						<tr>
+							<td>ФИЛОСОФИЯ</td>
+							<td>ГРАЖДАНСКОЕ ПРАВО</td>
+							<td>УГОЛОВНОЕ ПРАВО</td>
+						</tr>
+						<tr>
+							<td>
+								{user.last_name +
+									" " +
+									user.first_name +
+									" " +
+									user.second_name}
+							</td>
+							<td>{user.res_phil}</td>
+							<td>{user.res_civil}</td>
+							<td>{user.res_crim}</td>
+							<td>{+user.res_phil + +user.res_crim + +user.res_civil}</td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+			<BackForm />
+		</>
+	);
+}
+
+export default DataChecker(Table);

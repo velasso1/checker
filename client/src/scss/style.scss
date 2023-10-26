@@ -1,0 +1,53 @@
+/* import reset file  */
+
+@import 'reset.scss';
+
+* {
+  font-weight: 600;
+}
+
+
+body {
+    font-family: 'Open Sans', sans-serif;
+  }
+
+td,
+th {
+  border: 1px solid black;
+  padding: 20px 50px;
+}
+
+/* similar styles */
+
+.button {
+    height: 30px;
+    background-color: #3C75AC;
+    border: none;
+    border-radius: 5px;
+    color: #fff;
+    text-transform: uppercase;
+    font-family: 'Open Sans', sans-serif;
+    transition: .5s;
+    text-decoration: none;
+}
+
+.button:hover {
+  cursor: pointer;
+  background-color: #305f8c;
+}
+
+.button:disabled {
+  background-color: #7c7c7c;
+  pointer-events: none;
+} 
+
+@import 'header.scss';
+@import 'auth-form.scss';
+@import 'main.scss'; 
+@import 'table.scss';
+@import 'back-comp.scss';
+@import 'loading-comp.scss';
+@import 'admin-menu.scss'; 
+@import 'create-user-modal.scss';
+@import 'success-modal.scss';
+@import 'confirm-modal.scss';

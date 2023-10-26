@@ -1,0 +1,40 @@
+.auth {
+
+    display: flex;
+    justify-content: center;
+
+    &__form {
+      display: flex;
+      flex-direction: column;
+        padding-top: 40px;
+        text-align: center;
+    }
+ 
+    &__button { 
+        width: 250px;
+    }
+
+    &__button:hover {
+        cursor: pointer;
+        background-color: #305f8c;
+    }
+}
+
+.auth-pass__input:disabled {
+  border-color: rgb(166, 23, 23);
+}
+.auth-login__input,
+.auth-pass__input {
+  padding: 0 0 0 10px;
+  margin: 0 0 10px 0;
+  height: 30px;
+  border: 2px solid #bbbbbb;
+  border-radius: 5px;
+  width: 250px;
+}
+
+.auth-login__input::placeholder,
+.auth-pass__input::placeholder {
+  font-family: 'Open Sans', sans-serif;
+  color: #afafaf;
+}

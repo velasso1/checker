@@ -1,0 +1,27 @@
+.back {
+    display: flex;
+    justify-content: center;
+    padding-top: 10px;
+
+    &__button {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin: 1rem 40rem;
+        height: 30px;
+        background-color: #3C75AC;
+        border: none;
+        border-radius: 5px;
+        color: #fff;
+        text-transform: uppercase;
+        font-family: 'Open Sans', sans-serif;
+        transition: .5s;
+        text-decoration: none;
+        width: 100px;
+    }
+ 
+    &__button:hover {
+        cursor: pointer;
+        background-color: #305f8c;
+    }
+}
