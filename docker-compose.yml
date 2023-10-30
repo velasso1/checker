@@ -1,11 +1,9 @@
-version: "3"
+version: "3.9"
 
 services:
   client:
     container_name: client
-    build:
-      context: .
-      dockerfile: Dockerfile.client
+    build: ./client
     restart: unless-stopped
     depends_on:
       - server
@@ -14,9 +12,23 @@ services:
 
   server:
     container_name: server
-    build:
-      context: .
-      dockerfile: Dockerfile.server
+    build: ./server
     restart: unless-stopped
+    depends_on:
+      - database
     ports:
       - "8080:8080"
+
+  database:
+    container_name: db
+    image: postgres:latest
+    restart: always
+    environment:
+      POSTGRES_DB: "adjunct-results-db"
+      POSTGRES_USER: "postgres"
+      POSTGRES_PASSWORD: "16psjvYpp"
+    volumes:
+      - ./data/postgres:/var/lib/postgresql/data
+      - ./server/migrations/init:/docker-entrypoint-initdb.d
+    ports:
+      - "5432:5432"
