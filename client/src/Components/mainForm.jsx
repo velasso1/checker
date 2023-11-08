@@ -8,6 +8,7 @@ function MainForm({ state, setState, putData, error }) {
 			<form className="main__form">
 				{error && <span className="main__error-message">Поле пустое</span>}
 				<input
+					type="number"
 					style={{ borderColor: error ? "#a61717" : "#bbbbbb" }}
 					onChange={(e) => setState(e.target.value.trim())}
 					className="main__input"
