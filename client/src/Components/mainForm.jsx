@@ -15,7 +15,7 @@ function MainForm({ state, setState, putData, error }) {
 					placeholder="Введите id"
 				/>
 				<Link
-					to={state.length === 0 ? "/" : "/results"}
+					to={state.length === 0 ? "/" : `/results?id=${state}`}
 					className="main__button button"
 					onClick={putData}
 				>

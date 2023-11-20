@@ -25,3 +25,11 @@
         background-color: #305f8c;
     }
 }
+
+@media screen and (max-width: 1200px) {
+    .back {
+        &__button {
+            margin: 1rem 2rem;
+        }
+    }
+}

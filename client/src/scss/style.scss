@@ -51,3 +51,20 @@ th {
 @import 'create-user-modal.scss';
 @import 'success-modal.scss';
 @import 'confirm-modal.scss';
+
+
+// media queries 
+
+@media screen and (max-width: 1200px) {
+  td,
+  th {
+    border: 1px solid black;
+    padding: 20px 25px;
+  }
+}
+
+@media screen and (max-width: 992px) {
+  body {
+      font-size: 12px;
+  }
+}
