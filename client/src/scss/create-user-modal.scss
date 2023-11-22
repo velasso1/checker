@@ -103,4 +103,63 @@
     .result-input {
         width: 280px;
     } 
+
+    .modal_update {
+        flex-direction: row;
+    }
+}
+
+///////////////////////////////////////////////
+
+.modal__results {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding-bottom: 15px;
+}
+
+.modal__results-current-result {
+    display: flex;
+    padding: 5px 0 0 0;
+}
+
+.modal__results-select {
+    height: 30px;
+    border-radius: 5px;
+    margin-right: 10px;
+    border: 2px solid #bbbbbb;
+    text-align: center;
+}
+
+.modal__results-button {
+    font-weight: 400;
+    font-size: 13px;
+    border-radius: 5px;
+    background-color: #3C75AC;
+    color: #fff;
+    padding: 3px 6px;
+    margin-bottom: 10px;
+}
+
+.modal__input {
+    border: 2px solid #bbbbbb;
+    border-radius: 5px;
+    border-color: #bbbbbb;
+    height: 30px;
+    padding: 0 0 0 10px;
+    width: 350px;
+}
+
+.modal__results-add-button {
+    padding-top: 10px;
+}
+
+.modal__delete-button {
+    padding-left: 10px;
+    background-color: inherit;
+    transition: ease-out .2s;
+
+    &:hover {
+        color: red;
+    }
 }

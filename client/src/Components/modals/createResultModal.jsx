@@ -4,7 +4,8 @@ import { useDispatch } from "react-redux";
 import SuccessStatus from "./successStatus";
 import { fetchingData } from "../../store/slices/dataSlice";
 import TextField from "../fields/textField";
-import NumberField from "../fields/numberField";
+// import NumberField from "../fields/numberField";
+import ModalSelect from "./modalSelect";
 import config from "../../auxiliary.json";
 
 const CreateResultModal = ({ setOpenModal }) => {
@@ -14,11 +15,13 @@ const CreateResultModal = ({ setOpenModal }) => {
 		secondName: "",
 		resPhil: "",
 		resCivil: "",
-		resCrim: ""
+		resCrim: "",
+		resEng: ""
 	});
 
 	const [error, setError] = useState(false);
 	const [showSucModal, setShowSucModal] = useState(false);
+	const [modalState, setModalState] = useState({ count: 1 });
 	const dispatch = useDispatch();
 	// const respStatus = useSelector(getResponseStatus());
 
@@ -83,31 +86,30 @@ const CreateResultModal = ({ setOpenModal }) => {
 					Результаты вступительных испытаний
 				</span>
 
-				<div className="modal__results">
-					<div className="modal__results-labels">
-						{config.labelResults.map((item, index) => (
-							<label
-								key={index}
-								htmlFor={item.htmlFor}
-								className="modal__label"
-							>
-								{item.text}
-							</label>
-						))}
-					</div>
+				{/* /////////////////////////////////////////////////////////////////// */}
 
-					<div className="modal__results-inputs">
-						{config.numberField.map((item, index) => (
-							<NumberField
-								item={item}
-								key={index}
-								state={state}
-								setState={setState}
-								error={error}
-							/>
-						))}
+				<div className="modal__results">
+					{[...Array(modalState.count)].map((item, index) => (
+						<ModalSelect
+							key={index}
+							state={state}
+							setState={setState}
+							error={error}
+						/>
+					))}
+					<div className="modal__results-add-button">
+						<button
+							onClick={() =>
+								setModalState({ ...modalState, count: modalState.count + 1 })
+							}
+							className="modal__results-button"
+						>
+							Добавить результат
+						</button>
 					</div>
 				</div>
+
+				{/* /////////////////////////////////////////////////////////////////// */}
 
 				<div className="modal__buttons">
 					<button
@@ -123,7 +125,7 @@ const CreateResultModal = ({ setOpenModal }) => {
 							createNewResult();
 						}}
 					>
-						Добавить
+						Сохранить
 					</button>
 				</div>
 			</div>

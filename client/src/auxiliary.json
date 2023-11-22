@@ -8,7 +8,8 @@
     "numberField": [
         {"name": "resPhil", "value": "resPhil"},
         {"name": "resCrim", "value": "resCrim"},
-        {"name": "resCivil", "value": "resCivil"}
+        {"name": "resCivil", "value": "resCivil"},
+        {"name": "resEng", "value": "resCivil"}
     ],
 
     "labelInfo": [
@@ -20,6 +21,7 @@
     "labelResults": [
         {"htmlFor": "resPhil", "className": "modal__label", "text": "Философия"},
         {"htmlFor": "resCrim", "className": "modal__label", "text": "Уголовное право"},
-        {"htmlFor": "resCivil", "className": "modal__label", "text": "Гражданское право"}
+        {"htmlFor": "resCivil", "className": "modal__label", "text": "Гражданское право"},
+        {"htmlFor": "resEng", "className": "modal__label", "text": "Английский язык"}
     ]
 }

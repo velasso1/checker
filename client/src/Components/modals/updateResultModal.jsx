@@ -11,8 +11,15 @@ const UpdateResultModal = ({ setOpen }) => {
 	const data = useSelector((state) => state.data.data);
 
 	const currentUser = data.filter((item) => item.person_id === currentId);
-	const { first_name, last_name, second_name, res_phil, res_civil, res_crim } =
-		currentUser[0];
+	const {
+		first_name,
+		last_name,
+		second_name,
+		res_phil,
+		res_civil,
+		res_crim,
+		res_eng
+	} = currentUser[0];
 
 	const [state, setState] = useState({
 		firstName: `${first_name.trim()}`,
@@ -20,7 +27,8 @@ const UpdateResultModal = ({ setOpen }) => {
 		secondName: `${second_name.trim()}`,
 		resPhil: `${res_phil}`,
 		resCivil: `${res_civil}`,
-		resCrim: `${res_crim}`
+		resCrim: `${res_crim}`,
+		resEng: `${res_eng}`
 	});
 	const [error, setError] = useState(false);
 
@@ -85,7 +93,7 @@ const UpdateResultModal = ({ setOpen }) => {
 					Результаты вступительных испытаний
 				</span>
 
-				<div className="modal__results">
+				<div className="modal__results modal_update">
 					<div className="modal__results-labels">
 						{config.labelResults.map((item, index) => (
 							<label

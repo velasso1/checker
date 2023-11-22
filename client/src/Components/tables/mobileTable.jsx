@@ -8,14 +8,7 @@ const MobileTable = ({ user }) => {
 				<table className="results__table">
 					<tbody>
 						<tr>
-							<td colSpan="2">
-								{" "}
-								{user.last_name +
-									" " +
-									user.first_name +
-									" " +
-									user.second_name}
-							</td>
+							<td colSpan="2">{`Идентификатор: ${user.person_id}`}</td>
 						</tr>
 						<tr>
 							<td>Гражданское право</td>
@@ -30,8 +23,17 @@ const MobileTable = ({ user }) => {
 							<td>{user.res_phil}</td>
 						</tr>
 						<tr>
+							<td>Английский язык</td>
+							<td>{user.res_eng}</td>
+						</tr>
+						<tr>
 							<td>Сумма</td>
-							<td>{+user.res_phil + +user.res_crim + +user.res_civil}</td>
+							<td>
+								{+user.res_phil +
+									+user.res_crim +
+									+user.res_civil +
+									+user.res_eng}
+							</td>
 						</tr>
 					</tbody>
 				</table>

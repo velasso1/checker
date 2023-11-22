@@ -8,7 +8,7 @@ const DesktopTable = ({ user }) => {
 				<table className="results__table">
 					<tbody>
 						<tr>
-							<td rowSpan="2">ФИО</td>
+							<td rowSpan="2">Идентификатор</td>
 							<td colSpan="3">ЭКЗАМЕНЫ</td>
 							<td rowSpan="2">СУММА БАЛЛОВ</td>
 						</tr>
@@ -18,13 +18,7 @@ const DesktopTable = ({ user }) => {
 							<td>УГОЛОВНОЕ ПРАВО</td>
 						</tr>
 						<tr>
-							<td>
-								{user.last_name +
-									" " +
-									user.first_name +
-									" " +
-									user.second_name}
-							</td>
+							<td>{user.person_id}</td>
 							<td>{user.res_phil}</td>
 							<td>{user.res_civil}</td>
 							<td>{user.res_crim}</td>
