@@ -9,7 +9,7 @@ const DesktopTable = ({ user }) => {
 					<tbody>
 						<tr>
 							<td rowSpan="2">Идентификатор</td>
-							<td colSpan="3">ЭКЗАМЕНЫ</td>
+							<td colSpan="4">ЭКЗАМЕНЫ</td>
 							<td rowSpan="2">СУММА БАЛЛОВ</td>
 						</tr>
 						<tr>

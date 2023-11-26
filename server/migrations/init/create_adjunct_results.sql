@@ -13,7 +13,6 @@ CREATE TABLE IF NOT EXISTS adjunct_results
     person_id integer NOT NULL GENERATED ALWAYS AS IDENTITY ( INCREMENT 1 START 1000 MINVALUE 1000 MAXVALUE 9999 CACHE 1 )
 );
 
-
 INSERT INTO adjunct_results VALUES
 ('Иван', 'Иванович', 'Иванов', '95', '78', '32', '0'),
 ('Сергей', 'Иванович', 'Шестопалов', '53', '58', '49', '0'),

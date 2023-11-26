@@ -13,8 +13,15 @@ app.use(cors());
 // create a result
 app.post("/create", async (req, res) => {
   try {
-    const { firstName, secondName, lastName, resCivil, resCrim, resPhil } =
-      req.body;
+    const {
+      firstName,
+      secondName,
+      lastName,
+      resCivil,
+      resCrim,
+      resPhil,
+      resEng,
+    } = req.body;
     const newResult = await pool.query(
       "INSERT INTO adjunct_results VALUES($1, $2, $3, $4, $5, $6, $7)",
       [firstName, secondName, lastName, resCivil, resCrim, resPhil, resEng]

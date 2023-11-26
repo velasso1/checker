@@ -26,6 +26,7 @@ const CreateResultModal = ({ setOpenModal }) => {
 	const dispatch = useDispatch();
 
 	const options = useSelector((state) => state.select.options);
+	const createStatus = useSelector((state) => state.data.respStatus);
 
 	const checkSelectedOption = (value) => {
 		if (options.includes(value)) {
@@ -48,7 +49,11 @@ const CreateResultModal = ({ setOpenModal }) => {
 
 		dispatch(createResult(body));
 		setShowSucModal(true);
-		setTimeout(() => dispatch(fetchingData()), 100);
+
+		if (createStatus === 200) {
+			dispatch(fetchingData());
+		}
+
 		setTimeout(() => {
 			setOpenModal(false);
 			setShowSucModal(false);

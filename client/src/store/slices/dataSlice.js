@@ -62,6 +62,7 @@ export function fetchingData() {
 // create result
 
 export function createResult(body) {
+	console.log(body);
 	return async (dispatch) => {
 		dispatch(dataRequested());
 		const response = await fetch("http://localhost:8080/create", {
@@ -92,12 +93,13 @@ export function deleteResult(id) {
 // update result
 
 export function updateResult(id, body) {
-	return () => {
-		fetch(`http://localhost:8080/update/${id}`, {
+	return (dispatch) => {
+		const response = fetch(`http://localhost:8080/update/${id}`, {
 			method: "PUT",
 			headers: { "Content-Type": "application/json" },
 			body: JSON.stringify(body)
 		});
+		dispatch(dataSent(response.status));
 	};
 }
 

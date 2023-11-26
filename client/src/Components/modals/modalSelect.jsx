@@ -1,5 +1,6 @@
 import React, { useState } from "react";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import { removeOption } from "../../store/slices/selectSlice";
 import config from "../../auxiliary.json";
 
 const ModalSelect = ({
@@ -13,6 +14,8 @@ const ModalSelect = ({
 	const selectedOptions = useSelector((state) => state.select.options);
 	const [selectValue, setSelectValue] = useState("");
 	const [disableInput, setDisable] = useState(true);
+	const dispatch = useDispatch();
+	const options = useSelector((state) => state.select.options);
 
 	const hasValue =
 		selectValue && selectValue !== "default"
@@ -42,6 +45,15 @@ const ModalSelect = ({
 		}
 	};
 
+	const switchControl = (e) => {
+		if (options.includes(selectValue)) {
+			dispatch(removeOption(selectValue));
+		}
+		setSelectValue(e.target.value);
+		setDisable(false);
+		checkSelectedOption(e.target.value);
+	};
+
 	return (
 		<>
 			<div className="modal__results-current-result">
@@ -51,9 +63,7 @@ const ModalSelect = ({
 					name="select-labels"
 					id={"select-labels"}
 					onChange={(e) => {
-						setSelectValue(e.target.value);
-						setDisable(false);
-						checkSelectedOption(e.target.value);
+						switchControl(e);
 					}}
 				>
 					{config.options.map((item, index) => {

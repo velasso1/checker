@@ -9,6 +9,7 @@ import config from "../../auxiliary.json";
 const UpdateResultModal = ({ setOpen }) => {
 	const currentId = useSelector(getId());
 	const data = useSelector((state) => state.data.data);
+	const updateStatus = useSelector((state) => state.data.respStatus);
 
 	const currentUser = data.filter((item) => item.person_id === currentId);
 	const {
@@ -47,9 +48,9 @@ const UpdateResultModal = ({ setOpen }) => {
 
 		setOpen(false);
 		dispatch(updateResult(currentId, body));
-		setTimeout(() => {
+		if (updateStatus === 200) {
 			dispatch(fetchingData());
-		}, 100);
+		}
 	};
 
 	return (
