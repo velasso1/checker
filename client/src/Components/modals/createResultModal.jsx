@@ -1,11 +1,11 @@
 import React, { useState } from "react";
 import { createResult } from "../../store/slices/dataSlice";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import SuccessStatus from "./successStatus";
 import { fetchingData } from "../../store/slices/dataSlice";
 import TextField from "../fields/textField";
-// import NumberField from "../fields/numberField";
 import ModalSelect from "./modalSelect";
+import { addOption, removeOption } from "../../store/slices/selectSlice";
 import config from "../../auxiliary.json";
 
 const CreateResultModal = ({ setOpenModal }) => {
@@ -21,9 +21,19 @@ const CreateResultModal = ({ setOpenModal }) => {
 
 	const [error, setError] = useState(false);
 	const [showSucModal, setShowSucModal] = useState(false);
-	const [modalState, setModalState] = useState({ count: 1 });
+	const [subjects, setSubjects] = useState([{ id: 0 }]);
+	const [repeatOptions, setRepeatOptions] = useState(false);
 	const dispatch = useDispatch();
-	// const respStatus = useSelector(getResponseStatus());
+
+	const options = useSelector((state) => state.select.options);
+
+	const checkSelectedOption = (value) => {
+		if (options.includes(value)) {
+			setRepeatOptions(true);
+			return;
+		}
+		dispatch(addOption(value));
+	};
 
 	const body = state;
 
@@ -43,6 +53,22 @@ const CreateResultModal = ({ setOpenModal }) => {
 			setOpenModal(false);
 			setShowSucModal(false);
 		}, 800);
+	};
+
+	const deleteSubject = (id, selectValue) => {
+		setSubjects(
+			subjects.filter((item) => {
+				return item.id !== id;
+			})
+		);
+		dispatch(removeOption(selectValue));
+	};
+
+	const addSubject = () => {
+		if (subjects.length >= 4) {
+			return;
+		}
+		setSubjects([...subjects, { id: subjects[subjects.length - 1].id + 1 }]);
 	};
 
 	return (
@@ -86,30 +112,29 @@ const CreateResultModal = ({ setOpenModal }) => {
 					Результаты вступительных испытаний
 				</span>
 
-				{/* /////////////////////////////////////////////////////////////////// */}
-
 				<div className="modal__results">
-					{[...Array(modalState.count)].map((item, index) => (
+					{subjects.map((item) => (
 						<ModalSelect
-							key={index}
+							key={item.id}
 							state={state}
 							setState={setState}
 							error={error}
+							deleteField={deleteSubject}
+							id={item.id}
+							checkSelectedOption={checkSelectedOption}
 						/>
 					))}
+
 					<div className="modal__results-add-button">
 						<button
-							onClick={() =>
-								setModalState({ ...modalState, count: modalState.count + 1 })
-							}
+							disabled={subjects.length >= 4}
+							onClick={() => addSubject()}
 							className="modal__results-button"
 						>
 							Добавить результат
 						</button>
 					</div>
 				</div>
-
-				{/* /////////////////////////////////////////////////////////////////// */}
 
 				<div className="modal__buttons">
 					<button

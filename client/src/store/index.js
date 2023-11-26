@@ -4,6 +4,7 @@ import userReducer from "./slices/userSlice";
 import dataReducer from "./slices/dataSlice";
 import searchReducer from "./slices/search";
 import idToUpdateReducer from "./slices/idToUpdate";
+import selectSlice from "./slices/selectSlice";
 
 export default configureStore({
 	reducer: {
@@ -11,6 +12,7 @@ export default configureStore({
 		user: userReducer,
 		data: dataReducer,
 		search: searchReducer,
-		idToUpdate: idToUpdateReducer
+		idToUpdate: idToUpdateReducer,
+		select: selectSlice
 	}
 });

@@ -23,5 +23,20 @@
         {"htmlFor": "resCrim", "className": "modal__label", "text": "Уголовное право"},
         {"htmlFor": "resCivil", "className": "modal__label", "text": "Гражданское право"},
         {"htmlFor": "resEng", "className": "modal__label", "text": "Английский язык"}
+    ],
+
+    "options": [
+        {"value": "default", "id": "default", "text": "Выберите предмет"},
+        {"value": "resCrim", "id": "res_crim", "text": "Уголовное право"},
+        {"value": "resCivil", "id": "res_civil", "text": "Гражданское право"},
+        {"value": "resPhil", "id": "res_phil", "text": "Философия"},
+        {"value": "resEng", "id": "res_eng", "text": "Английский язык"}
+    ],
+
+    "subjects": [
+        {"id": "0"},
+        {"id": "1"},
+        {"id": "2"},
+        {"id": "3"}
     ]
 }

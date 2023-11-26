@@ -1,14 +1,23 @@
 import React, { useState } from "react";
+import { useSelector } from "react-redux";
+import config from "../../auxiliary.json";
 
-const ModalSelect = ({ state, setState, error }) => {
-	const [vision, setVision] = useState(true);
-	const [selectValue, setSelectValue] = useState("default");
+const ModalSelect = ({
+	state,
+	setState,
+	error,
+	deleteField,
+	id,
+	checkSelectedOption
+}) => {
+	const selectedOptions = useSelector((state) => state.select.options);
+	const [selectValue, setSelectValue] = useState("");
+	const [disableInput, setDisable] = useState(true);
+
 	const hasValue =
 		selectValue && selectValue !== "default"
 			? !state[`${selectValue}`].length
 			: true;
-	// добавить проверку на выбранный селект, чтобы было нельзя выбрать 2 одинаковых
-	// добавить проверку на то, что в селекте не выбран дефолтный
 
 	const handleChange = (targetValue) => {
 		switch (true) {
@@ -33,7 +42,7 @@ const ModalSelect = ({ state, setState, error }) => {
 		}
 	};
 
-	return vision ? (
+	return (
 		<>
 			<div className="modal__results-current-result">
 				<select
@@ -41,39 +50,42 @@ const ModalSelect = ({ state, setState, error }) => {
 					className="modal__results-select"
 					name="select-labels"
 					id={"select-labels"}
-					onChange={(e) => setSelectValue(e.target.value)}
+					onChange={(e) => {
+						setSelectValue(e.target.value);
+						setDisable(false);
+						checkSelectedOption(e.target.value);
+					}}
 				>
-					<option disabled value="default">
-						Выберите предмет
-					</option>
-					<option value="resCrim" id="res_crim">
-						Уголовное право
-					</option>
-					<option value="resCivil" id="res_civil">
-						Гражданское право
-					</option>
-					<option value="resPhil" id="res_phil">
-						Философия
-					</option>
-					<option value="resEng" id="res_eng">
-						Английский язык
-					</option>
-
-					{/* options change to auxuliary array */}
+					{config.options.map((item, index) => {
+						return (
+							<option
+								key={index}
+								disabled={index === 0 || selectedOptions.includes(item.value)}
+								value={item.value}
+								id={item.id}
+							>
+								{item.text}
+							</option>
+						);
+					})}
 				</select>
 				<input
+					disabled={disableInput}
 					style={{
 						borderColor: error && hasValue ? "#a61717" : "#bbbbbb"
 					}}
 					className="modal__input result-input"
 					type="number"
-					placeholder="Введите количество баллов"
+					placeholder={
+						disableInput ? "Выберите предмет" : "Введите количетсво баллов"
+					}
 					value={state[`${selectValue}`]}
 					onChange={(e) => handleChange(e.target.value)}
 				/>
 				<button
-					onClick={(e) => {
-						setVision(false);
+					disabled={id === 0}
+					onClick={() => {
+						deleteField(id, selectValue);
 					}}
 					className="modal__delete-button"
 				>
@@ -81,7 +93,7 @@ const ModalSelect = ({ state, setState, error }) => {
 				</button>
 			</div>
 		</>
-	) : null;
+	);
 };
 
 export default ModalSelect;

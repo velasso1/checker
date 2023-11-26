@@ -16,13 +16,20 @@ const DesktopTable = ({ user }) => {
 							<td>ФИЛОСОФИЯ</td>
 							<td>ГРАЖДАНСКОЕ ПРАВО</td>
 							<td>УГОЛОВНОЕ ПРАВО</td>
+							<td>АНГЛИЙСКИЙ ЯЗЫК</td>
 						</tr>
 						<tr>
 							<td>{user.person_id}</td>
 							<td>{user.res_phil}</td>
 							<td>{user.res_civil}</td>
 							<td>{user.res_crim}</td>
-							<td>{+user.res_phil + +user.res_crim + +user.res_civil}</td>
+							<td>{user.res_eng}</td>
+							<td>
+								{+user.res_phil +
+									+user.res_crim +
+									+user.res_civil +
+									+user.res_eng}
+							</td>
 						</tr>
 					</tbody>
 				</table>
