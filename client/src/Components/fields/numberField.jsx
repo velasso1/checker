@@ -15,6 +15,10 @@ const NumberField = ({ error, setState, state, item }) => {
 				setState({ ...state, resCivil: targetValue });
 				break;
 
+			case targetName === "resEng":
+				setState({ ...state, resEng: targetValue });
+				break;
+
 			default:
 				return null;
 		}

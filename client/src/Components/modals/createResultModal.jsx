@@ -5,7 +5,7 @@ import SuccessStatus from "./successStatus";
 import { fetchingData } from "../../store/slices/dataSlice";
 import TextField from "../fields/textField";
 import ModalSelect from "./modalSelect";
-import { addOption, removeOption } from "../../store/slices/selectSlice";
+import { removeOption, clearOptionsArr } from "../../store/slices/selectSlice";
 import config from "../../auxiliary.json";
 
 const CreateResultModal = ({ setOpenModal }) => {
@@ -22,19 +22,9 @@ const CreateResultModal = ({ setOpenModal }) => {
 	const [error, setError] = useState(false);
 	const [showSucModal, setShowSucModal] = useState(false);
 	const [subjects, setSubjects] = useState([{ id: 0 }]);
-	const [repeatOptions, setRepeatOptions] = useState(false);
 	const dispatch = useDispatch();
 
-	const options = useSelector((state) => state.select.options);
-	const createStatus = useSelector((state) => state.data.respStatus);
-
-	const checkSelectedOption = (value) => {
-		if (options.includes(value)) {
-			setRepeatOptions(true);
-			return;
-		}
-		dispatch(addOption(value));
-	};
+	// const createStatus = useSelector((state) => state.data.respStatus);
 
 	const body = state;
 
@@ -49,12 +39,12 @@ const CreateResultModal = ({ setOpenModal }) => {
 
 		dispatch(createResult(body));
 		setShowSucModal(true);
-
-		if (createStatus === 200) {
-			dispatch(fetchingData());
-		}
+		setTimeout(() => {
+			dispatch(clearOptionsArr());
+		}, 200);
 
 		setTimeout(() => {
+			dispatch(fetchingData());
 			setOpenModal(false);
 			setShowSucModal(false);
 		}, 800);
@@ -73,6 +63,12 @@ const CreateResultModal = ({ setOpenModal }) => {
 		if (subjects.length >= 4) {
 			return;
 		}
+
+		if (subjects.length === 0) {
+			setSubjects([{ id: 0 }]);
+			return;
+		}
+
 		setSubjects([...subjects, { id: subjects[subjects.length - 1].id + 1 }]);
 	};
 
@@ -126,7 +122,6 @@ const CreateResultModal = ({ setOpenModal }) => {
 							error={error}
 							deleteField={deleteSubject}
 							id={item.id}
-							checkSelectedOption={checkSelectedOption}
 						/>
 					))}
 
@@ -144,7 +139,10 @@ const CreateResultModal = ({ setOpenModal }) => {
 				<div className="modal__buttons">
 					<button
 						className="modal__cancel button"
-						onClick={() => setOpenModal(false)}
+						onClick={() => {
+							setOpenModal(false);
+							dispatch(clearOptionsArr());
+						}}
 					>
 						Отмена
 					</button>

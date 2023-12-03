@@ -21,7 +21,7 @@ const AdminMenu = () => {
 	};
 
 	// filter by surname in table
-	const newDataTable =
+	let newDataTable =
 		searchValue === ""
 			? state
 			: state.filter((people) => {

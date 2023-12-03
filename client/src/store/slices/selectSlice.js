@@ -14,10 +14,14 @@ const selectSlice = createSlice({
 
 		removeOption(state, action) {
 			state.options = state.options.filter((item) => item !== action.payload);
+		},
+
+		clearOptionsArr(state, action) {
+			state.options = [];
 		}
 	}
 });
 
-export const { addOption, removeOption } = selectSlice.actions;
+export const { addOption, removeOption, clearOptionsArr } = selectSlice.actions;
 
 export default selectSlice.reducer;

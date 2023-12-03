@@ -62,7 +62,6 @@ export function fetchingData() {
 // create result
 
 export function createResult(body) {
-	console.log(body);
 	return async (dispatch) => {
 		dispatch(dataRequested());
 		const response = await fetch("http://localhost:8080/create", {
@@ -94,12 +93,16 @@ export function deleteResult(id) {
 
 export function updateResult(id, body) {
 	return (dispatch) => {
-		const response = fetch(`http://localhost:8080/update/${id}`, {
-			method: "PUT",
-			headers: { "Content-Type": "application/json" },
-			body: JSON.stringify(body)
-		});
-		dispatch(dataSent(response.status));
+		try {
+			const response = fetch(`http://localhost:8080/update/${id}`, {
+				method: "PUT",
+				headers: { "Content-Type": "application/json" },
+				body: JSON.stringify(body)
+			});
+			dispatch(dataSent(response.status));
+		} catch (error) {
+			console.error(error.message);
+		}
 	};
 }
 

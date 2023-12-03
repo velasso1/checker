@@ -9,7 +9,7 @@
         {"name": "resPhil", "value": "resPhil"},
         {"name": "resCrim", "value": "resCrim"},
         {"name": "resCivil", "value": "resCivil"},
-        {"name": "resEng", "value": "resCivil"}
+        {"name": "resEng", "value": "resEng"}
     ],
 
     "labelInfo": [

@@ -46,11 +46,11 @@ const UpdateResultModal = ({ setOpen }) => {
 			}
 		}
 
-		setOpen(false);
 		dispatch(updateResult(currentId, body));
-		if (updateStatus === 200) {
+		setTimeout(() => {
 			dispatch(fetchingData());
-		}
+			setOpen(false);
+		}, 200);
 	};
 
 	return (
