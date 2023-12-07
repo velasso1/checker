@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { createResult } from "../../store/slices/dataSlice";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import SuccessStatus from "./successStatus";
 import { fetchingData } from "../../store/slices/dataSlice";
 import TextField from "../fields/textField";
