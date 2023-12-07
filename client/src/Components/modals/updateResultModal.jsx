@@ -1,7 +1,11 @@
 import React, { useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { getId } from "../../store/slices/idToUpdate";
-import { updateResult, fetchingData } from "../../store/slices/dataSlice";
+import {
+	updateResult,
+	fetchingData,
+	getAllResults
+} from "../../store/slices/dataSlice";
 import NumberField from "../fields/numberField";
 import TextField from "../fields/textField";
 import config from "../../auxiliary.json";
@@ -11,21 +15,11 @@ const UpdateResultModal = ({ setOpen }) => {
 	const data = useSelector((state) => state.data.data);
 	const updateStatus = useSelector((state) => state.data.respStatus);
 
-	const currentUser = data.filter((item) => item.person_id === currentId);
-	const {
-		first_name,
-		last_name,
-		second_name,
-		res_phil,
-		res_civil,
-		res_crim,
-		res_eng
-	} = currentUser[0];
+	let currentUser = data.filter((item) => item.person_id === currentId);
+	const { person_id, res_phil, res_civil, res_crim, res_eng } = currentUser[0];
 
 	const [state, setState] = useState({
-		firstName: `${first_name.trim()}`,
-		lastName: `${last_name.trim()}`,
-		secondName: `${second_name.trim()}`,
+		personId: `${person_id}`,
 		resPhil: `${res_phil}`,
 		resCivil: `${res_civil}`,
 		resCrim: `${res_crim}`,
@@ -50,6 +44,7 @@ const UpdateResultModal = ({ setOpen }) => {
 		setTimeout(() => {
 			dispatch(fetchingData());
 			setOpen(false);
+			currentUser = getAllResults();
 		}, 200);
 	};
 

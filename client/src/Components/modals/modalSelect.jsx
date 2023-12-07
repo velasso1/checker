@@ -78,7 +78,6 @@ const ModalSelect = ({ state, setState, error, deleteField, id }) => {
 						borderColor: error && hasValue ? "#a61717" : "#bbbbbb"
 					}}
 					className="modal__input result-input"
-					type="number"
 					placeholder={
 						disableInput ? "Выберите предмет" : "Введите количетсво баллов"
 					}

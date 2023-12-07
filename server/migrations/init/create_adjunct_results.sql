@@ -3,22 +3,19 @@ GRANT ALL PRIVILEGES ON DATABASE adjunct_results_db TO postgres;
 
 CREATE TABLE IF NOT EXISTS adjunct_results
 (
-    first_name character(36) COLLATE pg_catalog."default" NOT NULL,
-    second_name character(36) COLLATE pg_catalog."default" NOT NULL,
-    last_name character(36) COLLATE pg_catalog."default" NOT NULL,
+    person_id integer NOT NULL,
     res_civil integer NOT NULL,
     res_crim integer NOT NULL,
     res_phil integer NOT NULL,
-    res_eng integer NOT NULL,
-    person_id integer NOT NULL GENERATED ALWAYS AS IDENTITY ( INCREMENT 1 START 1000 MINVALUE 1000 MAXVALUE 9999 CACHE 1 )
+    res_eng integer NOT NULL
 );
 
 INSERT INTO adjunct_results VALUES
-('Иван', 'Иванович', 'Иванов', '95', '78', '32', '0'),
-('Сергей', 'Иванович', 'Шестопалов', '53', '58', '49', '0'),
-('Артем', 'Евгеньевич', 'Сухоруков', '72', '31', '1', '0'),
-('Петр', 'Андреевич', 'Гавриленко', '40', '0', '67', '0'),
-('Игнат', 'Захарович', 'Смирнов', '56', '31', '34', '0'),
-('Андрей', 'Иванович', 'Суворов', '91', '100', '97', '0');
+('1000', '100', '100', '100', '100'),
+('1001', '100', '100', '100', '100'),
+('1002', '100', '100', '100', '100'),
+('1003', '100', '100', '100', '100'),
+('1004', '100', '100', '100', '100'),
+('1005', '100', '100', '100', '100');
 
 

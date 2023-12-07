@@ -20,14 +20,12 @@ const AdminMenu = () => {
 		dispatch(updateValue(e.target.value));
 	};
 
-	// filter by surname in table
+	// filter by id in table
 	let newDataTable =
 		searchValue === ""
 			? state
 			: state.filter((people) => {
-					return people.last_name
-						.toLowerCase()
-						.includes(searchValue.toLowerCase());
+					return people.person_id === +searchValue;
 			  });
 
 	// receiving data
@@ -79,9 +77,6 @@ const AdminMenu = () => {
 			<table className="admin-menu__results-table">
 				<tbody>
 					<tr className="admin-menu__header-table">
-						<th>Фамилия</th>
-						<th>Имя</th>
-						<th>Отчество</th>
 						<th>Идентификатор</th>
 						<th colSpan={2}>Действие</th>
 					</tr>
@@ -92,9 +87,6 @@ const AdminMenu = () => {
 					)}
 					{newDataTable.map((item) => (
 						<tr className="admin-menu__content" key={item.person_id}>
-							<td>{item.last_name}</td>
-							<td>{item.first_name}</td>
-							<td>{item.second_name}</td>
 							<td>{item.person_id}</td>
 
 							<td>

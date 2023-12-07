@@ -13,18 +13,10 @@ app.use(cors());
 // create a result
 app.post("/create", async (req, res) => {
   try {
-    const {
-      firstName,
-      secondName,
-      lastName,
-      resCivil,
-      resCrim,
-      resPhil,
-      resEng,
-    } = req.body;
+    const { personId, resCivil, resCrim, resPhil, resEng } = req.body;
     const newResult = await pool.query(
-      "INSERT INTO adjunct_results VALUES($1, $2, $3, $4, $5, $6, $7)",
-      [firstName, secondName, lastName, resCivil, resCrim, resPhil, resEng]
+      "INSERT INTO adjunct_results VALUES($1, $2, $3, $4, $5)",
+      [personId, resCivil, resCrim, resPhil, resEng]
     );
 
     res.json(newResult.rows);
@@ -49,18 +41,10 @@ app.get("/allres", async (req, res) => {
 app.put("/update/:id", async (req, res) => {
   try {
     const { id } = req.params;
-    const {
-      firstName,
-      secondName,
-      lastName,
-      resCivil,
-      resCrim,
-      resPhil,
-      resEng,
-    } = req.body;
+    const { personId, resCivil, resCrim, resPhil, resEng } = req.body;
     const updateResult = await pool.query(
-      "UPDATE adjunct_results SET first_name = $1, second_name = $2, last_name = $3, res_civil = $4, res_crim = $5, res_phil = $6, res_eng = $7 WHERE person_id = $8",
-      [firstName, secondName, lastName, resCivil, resCrim, resPhil, resEng, id]
+      "UPDATE adjunct_results SET person_id = $1, res_civil = $2, res_crim = $3, res_phil = $4, res_eng = $5 WHERE person_id = $6",
+      [personId, resCivil, resCrim, resPhil, resEng, id]
     );
 
     res.json("UPDATED");

@@ -10,9 +10,7 @@ import config from "../../auxiliary.json";
 
 const CreateResultModal = ({ setOpenModal }) => {
 	const [state, setState] = useState({
-		firstName: "",
-		lastName: "",
-		secondName: "",
+		personId: "",
 		resPhil: "",
 		resCivil: "",
 		resCrim: "",
@@ -31,7 +29,7 @@ const CreateResultModal = ({ setOpenModal }) => {
 	const createNewResult = (e) => {
 		setError(false);
 		for (let key in body) {
-			if (!body[key].length) {
+			if (!body[key].length || body[key] < 0) {
 				setError(true);
 				return;
 			}

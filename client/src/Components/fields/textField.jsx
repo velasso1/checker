@@ -1,28 +1,9 @@
 import React from "react";
 
 const TextField = ({ error, setState, state, item }) => {
-	const handleChange = (targetValue, targetName) => {
-		switch (true) {
-			case targetName === "firstName":
-				setState({ ...state, firstName: targetValue });
-				break;
-
-			case targetName === "secondName":
-				setState({ ...state, secondName: targetValue });
-				break;
-
-			case targetName === "lastName":
-				setState({ ...state, lastName: targetValue });
-				break;
-
-			default:
-				return null;
-		}
-	};
-
 	return (
 		<input
-			type="text"
+			type="number"
 			value={state[`${item.value}`]}
 			name={item.name}
 			style={{
@@ -30,7 +11,7 @@ const TextField = ({ error, setState, state, item }) => {
 					error && !state[`${item.value}`].length ? "#a61717" : "#bbbbbb"
 			}}
 			onChange={(e) => {
-				handleChange(e.target.value, e.target.name);
+				setState({ ...state, personId: e.target.value });
 			}}
 			className="modal__input"
 		/>

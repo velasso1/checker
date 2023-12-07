@@ -31,4 +31,14 @@ services:
       - ./data/postgres:/var/lib/postgresql/data
       - ./server/migrations/init:/docker-entrypoint-initdb.d
     ports:
-      - "5432:5432"
+      - "5432"
+
+  nginx:
+    container_name: nginx
+    image: nginx
+    ports:
+      - "80:80"
+    volumes:
+      - ./nginx.conf:/etc/nginx.conf
+    links:
+      - client

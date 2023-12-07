@@ -1,8 +1,6 @@
 {
     "textField": [
-        {"name": "lastName", "value": "lastName"},
-        {"name": "firstName", "value": "firstName"},
-        {"name": "secondName", "value": "secondName"}
+        {"name": "perosnId", "value": "personId"}
     ],
 
     "numberField": [
@@ -13,9 +11,7 @@
     ],
 
     "labelInfo": [
-        {"htmlFor": "lastName", "className": "modal__label", "text": "Фамилия"},
-        {"htmlFor": "firstName", "className": "modal__label", "text": "Имя"},
-        {"htmlFor": "secondName", "className": "modal__label", "text": "Отчество"}
+        {"htmlFor": "personId", "className": "modal__label", "text": "Идентификатор"}
     ],
 
     "labelResults": [

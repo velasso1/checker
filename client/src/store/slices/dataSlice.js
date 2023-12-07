@@ -99,7 +99,6 @@ export function updateResult(id, body) {
 				headers: { "Content-Type": "application/json" },
 				body: JSON.stringify(body)
 			});
-			dispatch(dataSent(response.status));
 		} catch (error) {
 			console.error(error.message);
 		}
@@ -141,6 +140,12 @@ export const getRequestStatus = () => {
 export const getRequestError = () => {
 	return (state) => {
 		return state.data.error;
+	};
+};
+
+export const getAllResults = () => {
+	return (state) => {
+		return state.data.data;
 	};
 };
 
