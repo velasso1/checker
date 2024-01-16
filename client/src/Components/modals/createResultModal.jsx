@@ -16,20 +16,34 @@ const CreateResultModal = ({ setOpenModal }) => {
 		resCrim: "",
 		resEng: ""
 	});
-
 	const [error, setError] = useState(false);
 	const [showSucModal, setShowSucModal] = useState(false);
-	const [subjects, setSubjects] = useState([{ id: 0 }]);
+	const [subjects, setSubjects] = useState([{ id: 0, value: "" }]);
 	const dispatch = useDispatch();
-
-	// const createStatus = useSelector((state) => state.data.respStatus);
 
 	const body = state;
 
+	const addSubject = () => {
+		if (subjects.length >= 4) {
+			return;
+		}
+
+		if (subjects.length === 0) {
+			setSubjects([{ id: 0, value: "" }]);
+			return;
+		}
+
+		setSubjects([
+			...subjects,
+			{ id: subjects[subjects.length - 1].id + 1, value: "" }
+		]);
+	};
+
 	const createNewResult = (e) => {
 		setError(false);
-		for (let key in body) {
-			if (!body[key].length || body[key] < 0) {
+
+		for (let key of subjects) {
+			if (key.value <= 0 || typeof key.value !== "number") {
 				setError(true);
 				return;
 			}
@@ -39,10 +53,10 @@ const CreateResultModal = ({ setOpenModal }) => {
 		setShowSucModal(true);
 		setTimeout(() => {
 			dispatch(clearOptionsArr());
+			dispatch(fetchingData());
 		}, 200);
 
 		setTimeout(() => {
-			dispatch(fetchingData());
 			setOpenModal(false);
 			setShowSucModal(false);
 		}, 800);
@@ -55,19 +69,6 @@ const CreateResultModal = ({ setOpenModal }) => {
 			})
 		);
 		dispatch(removeOption(selectValue));
-	};
-
-	const addSubject = () => {
-		if (subjects.length >= 4) {
-			return;
-		}
-
-		if (subjects.length === 0) {
-			setSubjects([{ id: 0 }]);
-			return;
-		}
-
-		setSubjects([...subjects, { id: subjects[subjects.length - 1].id + 1 }]);
 	};
 
 	return (
@@ -118,7 +119,10 @@ const CreateResultModal = ({ setOpenModal }) => {
 							state={state}
 							setState={setState}
 							error={error}
+							setError={setError}
 							deleteField={deleteSubject}
+							subjects={subjects}
+							setSubjects={setSubjects}
 							id={item.id}
 						/>
 					))}

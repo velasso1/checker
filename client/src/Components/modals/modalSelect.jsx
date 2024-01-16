@@ -3,7 +3,15 @@ import { useDispatch, useSelector } from "react-redux";
 import { removeOption, addOption } from "../../store/slices/selectSlice";
 import config from "../../auxiliary.json";
 
-const ModalSelect = ({ state, setState, error, deleteField, id }) => {
+const ModalSelect = ({
+	state,
+	setState,
+	error,
+	deleteField,
+	id,
+	subjects,
+	setSubjects
+}) => {
 	const selectedOptions = useSelector((state) => state.select.options);
 	const [selectValue, setSelectValue] = useState("");
 	const [disableInput, setDisable] = useState(true);
@@ -36,6 +44,14 @@ const ModalSelect = ({ state, setState, error, deleteField, id }) => {
 			default:
 				return null;
 		}
+	};
+
+	const changeSubjectValue = (value, id) => {
+		setSubjects(
+			subjects.map((item) => {
+				return item.id === id ? { ...item, value: value } : item;
+			})
+		);
 	};
 
 	const switchControl = (e) => {
@@ -82,10 +98,12 @@ const ModalSelect = ({ state, setState, error, deleteField, id }) => {
 						disableInput ? "Выберите предмет" : "Введите количетсво баллов"
 					}
 					value={state[`${selectValue}`] || ""}
-					onChange={(e) => handleChange(e.target.value)}
+					onChange={(e) => {
+						handleChange(e.target.value);
+						changeSubjectValue(e.target.value, id);
+					}}
 				/>
 				<button
-					// disabled={id === 0}
 					onClick={() => {
 						deleteField(id, selectValue);
 					}}
